@@ -4,7 +4,8 @@ namespace Bakerkretzmar\LaravelMapbox;
 
 use RunTimeException;
 
-use Zttp\Zttp;
+
+use Illuminate\Support\Facades\Http;
 
 class Datasets extends MapboxRequest
 {
@@ -26,7 +27,7 @@ class Datasets extends MapboxRequest
      */
     public function list()
     {
-        return Zttp::get($this->url(Mapbox::DATASETS_ENDPOINT))->json();
+        return Http::get($this->url(Mapbox::DATASETS_ENDPOINT))->json();
     }
 
     /**
@@ -38,7 +39,7 @@ class Datasets extends MapboxRequest
      */
     public function create(array $data = [])
     {
-        return Zttp::post($this->url(Mapbox::DATASETS_ENDPOINT), $data)->json();
+        return Http::post($this->url(Mapbox::DATASETS_ENDPOINT), $data)->json();
     }
 
     /**
@@ -53,7 +54,7 @@ class Datasets extends MapboxRequest
             throw new RunTimeException('Dataset ID required');
         }
 
-        return Zttp::get($this->url(Mapbox::DATASETS_ENDPOINT, $this->dataset_id))->json();
+        return Http::get($this->url(Mapbox::DATASETS_ENDPOINT, $this->dataset_id))->json();
     }
 
     /**
@@ -69,7 +70,7 @@ class Datasets extends MapboxRequest
             throw new RunTimeException('Dataset ID required');
         }
 
-        return Zttp::patch($this->url(Mapbox::DATASETS_ENDPOINT, $this->dataset_id), $data)->json();
+        return Http::patch($this->url(Mapbox::DATASETS_ENDPOINT, $this->dataset_id), $data)->json();
     }
 
     /**
@@ -84,7 +85,7 @@ class Datasets extends MapboxRequest
             throw new RunTimeException('Dataset ID required');
         }
 
-        return Zttp::delete($this->url(Mapbox::DATASETS_ENDPOINT, $this->dataset_id))->status() === Mapbox::DELETE_SUCCESS_STATUS;
+        return Http::delete($this->url(Mapbox::DATASETS_ENDPOINT, $this->dataset_id))->status() === Mapbox::DELETE_SUCCESS_STATUS;
     }
 
     /**

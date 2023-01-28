@@ -25,9 +25,9 @@ abstract class TestCase extends \Orchestra\Testbench\TestCase
 
     protected function getEnvironmentSetUp($app)
     {
-        if (empty(getenv('CI'))) {
-            \Dotenv\Dotenv::create(__DIR__ . '/..', '.env.testing')->load();
-        }
+//        if (empty(getenv('CI'))) {
+//            \Dotenv\Dotenv::create(__DIR__ . '/..', '.env.testing')->load();
+//        }
 
         config(['laravel-mapbox.username' => getenv('MAPBOX_USERNAME')]);
         config(['laravel-mapbox.token' => getenv('MAPBOX_TOKEN')]);

@@ -4,7 +4,7 @@ namespace Bakerkretzmar\LaravelMapbox;
 
 use RunTimeException;
 
-use Zttp\Zttp;
+use Illuminate\Support\Facades\Http;
 
 class Tilesets extends MapboxRequest
 {
@@ -26,7 +26,7 @@ class Tilesets extends MapboxRequest
      */
     public function list()
     {
-        return Zttp::get($this->url(Mapbox::TILESETS_ENDPOINT))->json();
+        return Http::get($this->url(Mapbox::TILESETS_ENDPOINT))->json();
     }
 
     /**
@@ -45,6 +45,6 @@ class Tilesets extends MapboxRequest
         [$url_before, $url_after] = explode('?', $url);
         $url = $url_before . '.' . $this->tileset . '?' . $url_after;
 
-        return Zttp::delete($url)->status() === Mapbox::DELETE_SUCCESS_STATUS;
+        return Http::delete($url)->status() === Mapbox::DELETE_SUCCESS_STATUS;
     }
 }

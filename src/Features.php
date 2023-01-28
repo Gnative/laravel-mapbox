@@ -4,7 +4,7 @@ namespace Bakerkretzmar\LaravelMapbox;
 
 use RunTimeException;
 
-use Zttp\Zttp;
+use Http\Http;
 
 class Features extends MapboxRequest
 {
@@ -28,7 +28,7 @@ class Features extends MapboxRequest
      */
     public function list()
     {
-        return Zttp::get($this->url(Mapbox::DATASETS_ENDPOINT, $this->dataset_id, [
+        return Http::get($this->url(Mapbox::DATASETS_ENDPOINT, $this->dataset_id, [
             Mapbox::FEATURES_ENDPOINT,
         ]))->json();
     }
@@ -46,7 +46,7 @@ class Features extends MapboxRequest
             throw new RunTimeException('Feature ID required');
         }
 
-        return Zttp::put($this->url(Mapbox::DATASETS_ENDPOINT, $this->dataset_id, [
+        return Http::put($this->url(Mapbox::DATASETS_ENDPOINT, $this->dataset_id, [
             Mapbox::FEATURES_ENDPOINT,
             $this->feature_id,
         ]), $feature)->json();
@@ -64,7 +64,7 @@ class Features extends MapboxRequest
             throw new RunTimeException('Feature ID required');
         }
 
-        return Zttp::get($this->url(Mapbox::DATASETS_ENDPOINT, $this->dataset_id, [
+        return Http::get($this->url(Mapbox::DATASETS_ENDPOINT, $this->dataset_id, [
             Mapbox::FEATURES_ENDPOINT,
             $this->feature_id,
         ]))->json();
@@ -82,7 +82,7 @@ class Features extends MapboxRequest
             throw new RunTimeException('Feature ID required');
         }
 
-        return Zttp::delete($this->url(Mapbox::DATASETS_ENDPOINT, $this->dataset_id, [
+        return Http::delete($this->url(Mapbox::DATASETS_ENDPOINT, $this->dataset_id, [
             Mapbox::FEATURES_ENDPOINT,
             $this->feature_id,
         ]))->status() === Mapbox::DELETE_SUCCESS_STATUS;

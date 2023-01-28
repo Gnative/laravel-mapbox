@@ -4,7 +4,7 @@ namespace Bakerkretzmar\LaravelMapbox;
 
 use RunTimeException;
 
-use Zttp\Zttp;
+use Illuminate\Support\Facades\Http;
 
 class Uploads extends MapboxRequest
 {
@@ -26,7 +26,7 @@ class Uploads extends MapboxRequest
      */
     public function credentials()
     {
-        return Zttp::get($this->url(Mapbox::UPLOADS_ENDPOINT, null, ['credentials']))->json();
+        return Http::get($this->url(Mapbox::UPLOADS_ENDPOINT, null, ['credentials']))->json();
     }
 
     /**
@@ -37,7 +37,7 @@ class Uploads extends MapboxRequest
      */
     public function list()
     {
-        return Zttp::get($this->url(Mapbox::UPLOADS_ENDPOINT))->json();
+        return Http::get($this->url(Mapbox::UPLOADS_ENDPOINT))->json();
     }
 
     /**
@@ -68,7 +68,7 @@ class Uploads extends MapboxRequest
             unset($data['dataset']);
         }
 
-        return Zttp::post($this->url(Mapbox::UPLOADS_ENDPOINT), $data)->json();
+        return Http::post($this->url(Mapbox::UPLOADS_ENDPOINT), $data)->json();
     }
 
     /**
@@ -83,7 +83,7 @@ class Uploads extends MapboxRequest
             throw new RunTimeException('Upload ID required');
         }
 
-        return Zttp::get($this->url(Mapbox::UPLOADS_ENDPOINT, $this->upload_id))->json();
+        return Http::get($this->url(Mapbox::UPLOADS_ENDPOINT, $this->upload_id))->json();
     }
 
     /**
@@ -98,6 +98,6 @@ class Uploads extends MapboxRequest
             throw new RunTimeException('Upload ID required');
         }
 
-        return Zttp::delete($this->url(Mapbox::UPLOADS_ENDPOINT, $this->upload_id))->status() === Mapbox::DELETE_SUCCESS_STATUS;
+        return Http::delete($this->url(Mapbox::UPLOADS_ENDPOINT, $this->upload_id))->status() === Mapbox::DELETE_SUCCESS_STATUS;
     }
 }
