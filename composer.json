@@ -10,9 +10,8 @@
         "guzzlehttp/guzzle": "^7.5"
     },
     "require-dev": {
-        "codedungeon/phpunit-result-printer": "^0.26.2",
-        "orchestra/testbench": "^3.8",
-        "phpunit/phpunit": "^8.2"
+        "orchestra/testbench": "^7.19",
+        "phpunit/phpunit": "^9.5.10"
     },
     "authors": [
         {
