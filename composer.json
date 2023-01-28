@@ -6,7 +6,7 @@
     "type": "library",
     "license": "MIT",
     "require": {
-        "php": "^7.2",
+        "php": "^8.0",
         "bakerkretzmar/zttp": "^0.6.0"
     },
     "require-dev": {
