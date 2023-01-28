@@ -3,3 +3,5 @@ vendor/
 .env.testing
 .phpunit.result.cache
 coverage.xml
+.env
+.idea*
